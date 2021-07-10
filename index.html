@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-
+        <meta charset="utf-8">
     </head>
     <body>
     <script>
@@ -18,83 +18,98 @@
                     return choice = 'Scissors';
             }
         }
+        //get user move
         function myPlay(){
-            let choice = prompt("Enter choice of Rock, Paper, or Scissors:");
+            let choice;
+            while(choice !== 'rock' && choice !== 'paper' && choice !== 'scissors'){
+                choice = prompt("Enter choice of Rock, Paper, or Scissors:").toLowerCase();
+            }
             return choice;
         }
 
         //compare moves to determine winner
-        //and tally score
-        function playRound(user,com){
-            let userWin = 0;
-            let comWin = 0;            
-            console.log(com);
+        //This is one round of five
+        //returns win if user wins, lose if computer wins, and tie if tie
+        function playRound(user,com){        
+            console.log("You chose: " + user);
+            console.log("Computer chose: " + com);
+
+            let winner;
             switch(com){
                 case ('Rock'):
-                    if (user == 'Rock'){
-                        console.log('Tie');
+                    if (user == 'rock'){
+                        winner = 'tie';
+                        console.log('Tie. Next round.');
                     }
-                    else if (user == 'Paper'){
-                        userWin++;
+                    else if (user == 'paper'){
+                        winner = 'lose';
                         console.log('Round Win! Paper beats Rock!');
                     }
-                    else if (user == 'Scissors'){
-                        comWin++;
+                    else if (user == 'scissors'){
+                        winner = 'lose';
                         console.log('Round Lose! Rock beats Scissors');
                     }
                     break;
                 case ('Paper'):
-                    if (user == 'Rock'){
-                        comWin++;
+                    if (user == 'rock'){
+                        winner = 'lose';
                         console.log('Round Lose! Paper beats Rock!');
                     }
-                    else if (user == 'Paper'){
-                        console.log('Tie');
+                    else if (user == 'paper'){
+                        winner = 'tie';
+                        console.log('Tie. Next round.');
                     }
-                    else if (user == 'Scissors'){
-                        userWin++;
+                    else if (user == 'scissors'){
+                        winner = 'win';
                         console.log('Round Win! Scissors beats Paper!');
                     }
                     break;
                 case ('Scissors'):
-                    if (user == 'Rock'){
-                        userWin++;
+                    if (user == 'rock'){
+                        winner = 'win';
                         console.log('Round Win! Rock beats Scissors!');
                     }
-                    else if (user == 'Paper'){
-                        comWin++;
+                    else if (user == 'paper'){
+                        winner = 'lose';
                         console.log('Round Lose! Scissors beat Paper!');
                     }
-                    else if (user == 'Scissors'){
-                        console.log('Tie');
+                    else if (user == 'scissors'){
+                        winner = 'tie';
+                        console.log('Tie. Next round.');
                     }
                     break;
                 default:
                     return console.log("Please enter Rock, Paper, or Scissors!");
                     break;
             }
-            console.log('Your score: ' + userWin)
-            console.log('Computer score: ' + comWin)
-            return [userWin, comwin];
+            return winner;
             
         }
-
+        //game will play for 5 rounds
         function game(){
             let rounds = 0;
+            let userScore = 0;
+            let comScore = 0;
             
             while(rounds < 5){
-                //get user input
-                //let userPlay = () => prompt('Enter choice of Rock, Paper, or Scissors:');
-                
                 let a = myPlay();
                 let b = comPlay();
-                let [userPoint, comPoint] += playRound(a,b);
-                userWin += userPoint;
-                comWin += comPoint;
+                let result = playRound(a,b);
+                if(result == 'win'){
+                    userScore++;
+                }else if(result == 'lose'){
+                    comScore++;
+                }else if(result == 'tie'){
+                    
+                }
                 rounds++;
-                console.log(userWin);
-                console.log(comWin);
+                console.log("Your score: " + userScore);
+                console.log("Computer score: " + comScore);
+                
+
             }
+            let victor = (userScore > comScore) ? "You win!" : (comScore > userScore) ? "Computer wins!" : "It was a tie!";
+            console.log(victor);
         }
         game();
     </script>
