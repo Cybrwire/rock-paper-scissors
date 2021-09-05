@@ -13,6 +13,7 @@
             <button type='button' id='p' onClick='userChoice(this.textContent)' >Paper</button>
             <button type='button' id='s' onClick='userChoice(this.textContent)' >Scissors</button>
         </div>
+        
     <script>
         // get computer move
         function comPlay(){
@@ -30,7 +31,12 @@
         //get user move
         
         function userChoice(selected){
-            game(selected);
+            let com = comPlay();
+            playRound(selected, com);
+        }
+        function displayResult(){
+            const result = document.createElement('div');
+            result.textContent = 
         }
 
         //compare moves to determine winner
@@ -87,6 +93,7 @@
                 default:
                     return console.log("Please enter Rock, Paper, or Scissors!");
                     break;
+                
             }
             return winner;
             
