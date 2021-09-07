@@ -8,15 +8,28 @@
             
     </head>
     <body>
+        
         <div id='buttons'>
             <button type='button' id='r' onClick='playRound(this.textContent)'>Rock</button>
             <button type='button' id='p' onClick='playRound(this.textContent)'>Paper</button>
             <button type='button' id='s' onClick='playRound(this.textContent)'>Scissors</button>
         </div>
         
+        <div id='userPoint'>
+            <div>You</div>
+            <div>0</div>
+        </div>
+
+        <div id='comPoint'>
+            <div>Com</div>
+            <div>0</div>
+        </div>
+
+    </div>
+
     <script>
-        // get computer move
-        function comPlay(){
+        
+        function comPlay(){ // get computer move
             let num = Math.floor(Math.random() * 3);
             let choice = '';
             switch(num){
@@ -27,23 +40,23 @@
                 case 2:
                     return choice = 'Scissors';
             }
-        }
-        //get user move
+        };
         
-        function displayResult(winner, gameText){
+        
+        function displayResult(winner, gameText){ //get user move
             const result = document.createElement('div');
+
             result.textContent = (gameText);
             buttons.appendChild(result);
+            
         };
 
         //compare moves to determine winner
         //This is one round of five
-        //returns win if user wins, lose if computer wins, and tie if tie
+        //returns You if user wins, Com if computer wins, and tie if tie
         function playRound(user){   
-                 
             com = comPlay();
             let gameText = `You chose ${user}. Com chose ${com}. `;
-
             let winner;
             switch(com){
                 case ('Rock'):
@@ -88,15 +101,11 @@
                         gameText += 'Tie. Next round.';
                     }
                     break;
-                
-                
             }
-            
             displayResult(winner, gameText);
-            
         }
-        //game will play for 5 rounds
-        function game(userPlay){
+        
+        function game(userPlay){//game will play for 5 rounds
             let rounds = 0;
             let userScore = 0;
             let comScore = 0;
@@ -117,6 +126,7 @@
                 console.log("Computer score: " + comScore);
 
             //}
+            
             //announce the winner
             let victor = (userScore > comScore) ? "You win!" : (comScore > userScore) ? "Computer wins!" : "It was a tie!";
             console.log(victor);
