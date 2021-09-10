@@ -35,3 +35,6 @@
 #userPoint, #comPoint > div:first-of-type{
     padding-top: 1vw;
 }
+#result{
+    overflow: hidden;
+}

@@ -17,18 +17,19 @@
         
         <div id='userPoint'>
             <div>You</div>
-            <div>0</div>
+            <div id='userScore'>0</div>
         </div>
 
         <div id='comPoint'>
             <div>Com</div>
-            <div>0</div>
+            <div id='comScore'>0</div>
         </div>
 
     </div>
 
     <script>
         
+
         function comPlay(){ // get computer move
             let num = Math.floor(Math.random() * 3);
             let choice = '';
@@ -43,11 +44,34 @@
         };
         
         
-        function displayResult(winner, gameText){ //get user move
+        function displayResult(roundPoint, gameText){ 
             const result = document.createElement('div');
-
+            result.setAttribute('id', 'result');
             result.textContent = (gameText);
             buttons.appendChild(result);
+        };
+
+        function addScore(roundPoint){
+            const userScore = document.getElementById('userScore');
+            const comScore = document.getElementById('comScore');
+            
+            if(roundPoint === "You"){
+                userScore.innerHTML++;
+            }
+            if(roundPoint === "Com"){
+                comScore.innerHTML++;
+            }
+            checkWinner(userScore, comScore);
+            
+        }
+
+        function checkWinner(userScore, comScore){
+            if (userScore.innerHTML == 5 || comScore.innerHTML == 5){
+                const winner = document.createElement('div');
+                winner.textContent = (userScore > comScore) ? 'You win!' : 'Com Wins!';
+                let result = document.getElementById('result');
+                result.appendChild(winner);
+            } 
             
         };
 
@@ -57,80 +81,55 @@
         function playRound(user){   
             com = comPlay();
             let gameText = `You chose ${user}. Com chose ${com}. `;
-            let winner;
+            let roundPoint;
             switch(com){
                 case ('Rock'):
                     if (user == 'Rock'){
-                        winner = 'tie';
+                        roundPoint = 'tie';
                         gameText += 'Tie. Next round.';
                     }
                     else if (user == 'Paper'){
-                        winner = 'You';
+                        roundPoint = 'You';
                         gameText += 'Round Win! Paper beats Rock!';
                     }
                     else if (user == 'Scissors'){
-                        winner = 'Com';
+                        roundPoint = 'Com';
                         gameText += 'Round Lose! Rock beats Scissors';
                     }
                     break;
                 case ('Paper'):
                     if (user == 'Rock'){
-                        winner = 'Com';
+                        roundPoint = 'Com';
                         gameText += 'Round Lose! Paper beats Rock!';
                     }
                     else if (user == 'Paper'){
-                        winner = 'tie';
+                        roundPoint = 'tie';
                         gameText += 'Tie. Next round.';
                     }
                     else if (user == 'Scissors'){
-                        winner = 'You';
+                        roundPoint = 'You';
                         gameText += 'Round Win! Scissors beats Paper!';
                     }
                     break;
                 case ('Scissors'):
                     if (user == 'Rock'){
-                        winner = 'You';
+                        roundPoint = 'You';
                         gameText += 'Round Win! Rock beats Scissors!';
                     }
                     else if (user == 'Paper'){
-                        winner = 'Com';
+                        roundPoint = 'Com';
                         gameText += 'Round Lose! Scissors beat Paper!';
                     }
                     else if (user == 'Scissors'){
-                        winner = 'tie';
+                        roundPoint = 'tie';
                         gameText += 'Tie. Next round.';
                     }
                     break;
             }
-            displayResult(winner, gameText);
+            displayResult(roundPoint, gameText);
+            addScore(roundPoint);
         }
         
-        function game(userPlay){//game will play for 5 rounds
-            let rounds = 0;
-            let userScore = 0;
-            let comScore = 0;
-            
-            //while(rounds < 5){
-                let a = userPlay.toLowerCase();
-                let b = comPlay();
-                let result = playRound(a,b);
-                if(result == 'win'){
-                    userScore++;
-                }else if(result == 'lose'){
-                    comScore++;
-                }else if(result == 'tie'){
-                    
-                }
-                //rounds++;
-                console.log("Your score: " + userScore);
-                console.log("Computer score: " + comScore);
-
-            //}
-            
-            //announce the winner
-            let victor = (userScore > comScore) ? "You win!" : (comScore > userScore) ? "Computer wins!" : "It was a tie!";
-            console.log(victor);
-        }
         
     </script>
     </body>
