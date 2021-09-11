@@ -10,10 +10,11 @@
     <body>
         
         <div id='buttons'>
-            <button type='button' id='r' onClick='playRound(this.textContent)'>Rock</button>
-            <button type='button' id='p' onClick='playRound(this.textContent)'>Paper</button>
-            <button type='button' id='s' onClick='playRound(this.textContent)'>Scissors</button>
+            <button type = 'button' id = 'r' onClick = 'playRound(this.textContent)'>Rock</button>
+            <button type = 'button' id = 'p' onClick = 'playRound(this.textContent)'>Paper</button>
+            <button type = 'button' id = 's' onClick = 'playRound(this.textContent)'>Scissors</button>
         </div>
+
         
         <div id='userPoint'>
             <div>You</div>
@@ -28,23 +29,23 @@
     </div>
 
     <script>
-        
 
         function comPlay(){ // get computer move
-            let num = Math.floor(Math.random() * 3);
+            let num    = Math.floor(Math.random() * 3);
             let choice = '';
             switch(num){
-                case 0:
+                case 0: 
                     return choice = 'Rock';
                 case 1: 
                     return choice = 'Paper';
-                case 2:
+                case 2: 
                     return choice = 'Scissors';
             }
         };
         
         
         function displayResult(roundPoint, gameText){ 
+            const buttons = document.getElementById('buttons');
             const result = document.createElement('div');
             result.setAttribute('id', 'result');
             result.textContent = (gameText);
@@ -61,18 +62,19 @@
             if(roundPoint === "Com"){
                 comScore.innerHTML++;
             }
-            checkWinner(userScore, comScore);
+            checkWinner(userScore.innerHTML, comScore.innerHTML);
             
         }
 
         function checkWinner(userScore, comScore){
-            if (userScore.innerHTML == 5 || comScore.innerHTML == 5){
+            if (userScore == 5 || comScore == 5){
                 const winner = document.createElement('div');
                 winner.textContent = (userScore > comScore) ? 'You win!' : 'Com Wins!';
                 let result = document.getElementById('result');
-                result.appendChild(winner);
-            } 
-            
+                buttons.appendChild(winner);
+                document.querySelectorAll('button').forEach(
+                    button=>button.disabled=true);
+            };  
         };
 
         //compare moves to determine winner
@@ -94,7 +96,7 @@
                     }
                     else if (user == 'Scissors'){
                         roundPoint = 'Com';
-                        gameText += 'Round Lose! Rock beats Scissors';
+                        gameText += 'Round Lose! Rock beats Scissors.';
                     }
                     break;
                 case ('Paper'):
