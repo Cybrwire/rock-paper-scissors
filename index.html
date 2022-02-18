@@ -1,20 +1,22 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="reset" href="/rock-paper-scissors/css/reset.css"/>
-        <link rel="stylesheet" type="text/css" href="/rock-paper-scissors/css/style.css"/>
+        <link rel="reset" href="/css/reset.css"/>
+        <link rel="stylesheet" type="text/css" href="/css/style.css"/>
         <title>Rock Paper Scissors</title>
-            
-            
     </head>
     <body>
         
-        <div id='buttons'>
-            <button type = 'button' id = 'r' onClick = 'playRound(this.textContent)'>Rock</button>
-            <button type = 'button' id = 'p' onClick = 'playRound(this.textContent)'>Paper</button>
-            <button type = 'button' id = 's' onClick = 'playRound(this.textContent)'>Scissors</button>
+        <div id='button-container'>
+            <button type = 'button' id = 'r' onClick = 'playRound("Rock")'><img src='/images/rock.png' alt='rock(Art by: Icongeek26 - https://www.flaticon.com/authors/icongeek26)'></button>
+            <button type = 'button' id = 'p' onClick = 'playRound("Paper")'><img src='/images/paper.png' alt='rock(Art by: Icongeek26 - https://www.flaticon.com/authors/icongeek26)'></button>
+            <button type = 'button' id = 's' onClick = 'playRound("Scissors")'><img src='/images/scissors.png' alt='scissors(Art by: Freepik - https://www.flaticon.com/authors/Freepik'></button>
         </div>
 
+        <div>
+        <div id='result-panel'>
+            <div id='result'></div>
+        </div>
         
         <div id='userPoint'>
             <div>You</div>
@@ -45,11 +47,8 @@
         
         
         function displayResult(roundPoint, gameText){ 
-            const buttons = document.getElementById('buttons');
-            const result = document.createElement('div');
-            result.setAttribute('id', 'result');
-            result.textContent = (gameText);
-            buttons.appendChild(result);
+            document.getElementById('result');
+            result.innerHTML = gameText;
         };
 
         function addScore(roundPoint){
@@ -69,9 +68,7 @@
         function checkWinner(userScore, comScore){
             if (userScore == 5 || comScore == 5){
                 const winner = document.createElement('div');
-                winner.textContent = (userScore > comScore) ? 'You win!' : 'Com Wins!';
-                let result = document.getElementById('result');
-                buttons.appendChild(winner);
+                result.innerHTML = (userScore > comScore) ? 'You win!' : 'Com Wins!';
                 document.querySelectorAll('button').forEach(
                     button=>button.disabled=true);
             };  

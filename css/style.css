@@ -4,11 +4,18 @@
     padding: 0;
     box-sizing: border-box;
 }
-#buttons{
-    width: 400px;
-    margin: 30px auto;
-    padding: 30px 30px;
-    border: black 1px solid;
+#button-container{
+    display: flex;
+    justify-content: center;
+    margin-top: 10vw;   
+}
+button{
+    display: inline;
+    padding: 5px;;
+}
+button > img{
+    height: 100px;
+    width: 100px;
 }
 #userPoint{
     height: 10vw;
@@ -17,6 +24,7 @@
     left: 5vw;
     top: 2vw;
     border: black 3px solid;
+    box-shadow: 5px 5px;
     text-align: center;
     font-size: 2em;
     font-family: 'Asap', sans-serif;
@@ -28,10 +36,18 @@
     right: 5vw;
     top: 2vw;
     border: black 3px solid;
+    box-shadow: 5px 5px;
     text-align: center;
     font-size: 2em;
     font-family: 'Asap', sans-serif;
 }
 #userPoint, #comPoint > div:first-of-type{
     padding-top: 1vw;
+}
+#result-panel{
+    width: auto;
+    height: auto;
+}
+#result{
+
 }
