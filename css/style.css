@@ -11,7 +11,8 @@
 }
 button{
     display: inline;
-    padding: 5px;;
+    padding: 5px;
+    margin: 0% 5px;
 }
 button > img{
     height: 100px;
@@ -49,5 +50,8 @@ button > img{
     height: auto;
 }
 #result{
-
+    display: flex;
+    justify-content: center;
+    position: relative;
+    top: 10vh;
 }
