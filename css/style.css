@@ -5,18 +5,53 @@
     box-sizing: border-box;
 }
 #button-container{
+    position: relative;
+    top: 20vw;
     display: flex;
     justify-content: center;
-    margin-top: 10vw;   
+    margin: 0 auto;
 }
-button{
+
+button .standby{
+    border: black solid 3px;
+    border-radius: 5%;
     display: inline;
     padding: 5px;
     margin: 0% 5px;
 }
+/*with this animation, the selected option will rise up
+and the other buttons will disappear*/
+.rise-and-fade{
+    animation-name: rise-and-fade;
+    animation-duration: 1.1s;
+    animation-delay: 0s;
+    animation-timing-function: ease-out;
+    animation-direction: normal;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards; /*maintain property changes after anim*/
+}
+@keyframes rise-and-fade {
+    0%{
+        border: none;
+        background-color: transparent;
+    }
+    to{
+        transform: translate(0,-8vw);
+        border: none;
+        background-color: transparent;
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+.fade {
+    visibility: hidden;
+    opacity   : 0;
+    transition: visibility 0.75s 0s, opacity 0.5s ease;
+}
+
 button > img{
-    height: 100px;
-    width: 100px;
+    height: 125px;
+    width: 125px;
 }
 #userPoint{
     height: 10vw;
@@ -45,13 +80,15 @@ button > img{
 #userPoint, #comPoint > div:first-of-type{
     padding-top: 1vw;
 }
+/* moved result panel to bottom for testing */
 #result-panel{
     width: auto;
     height: auto;
+    position: absolute;
+    bottom: 0;
 }
 #result{
     display: flex;
     justify-content: center;
-    position: relative;
-    top: 10vh;
+    font-family: 'Asap', sans-serif;
 }
