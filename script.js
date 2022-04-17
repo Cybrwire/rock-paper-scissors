@@ -95,6 +95,8 @@ function playRound(user, choiceID){
     
     displayResult(roundPoint, gameText);
     addScore(roundPoint);
+    setTimeout(function(){buttonReturn();}, 1500);
+    //buttonReturn();
 };
 // change buttons class to animate
 function buttonAnimation(targetButtonID){
@@ -108,3 +110,8 @@ function buttonAnimation(targetButtonID){
     });
     
 };
+function buttonReturn() {
+    document.getElementById('s').className='standby';
+    document.getElementById('r').className='standby';
+    document.getElementById('p').className='standby';
+}
