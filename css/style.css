@@ -48,6 +48,11 @@ and the other buttons will disappear*/
     opacity   : 0;
     transition: visibility 0.75s 0s, opacity 0.5s ease;
 }
+.fade-in {
+    visibility: visible;
+    opacity   : 100;
+    transition: visibility 0.75s 0s, opacity 0.5s ease;
+}
 
 button > img{
     height: 125px;
