@@ -96,7 +96,6 @@ function playRound(user, choiceID){
     displayResult(roundPoint, gameText);
     addScore(roundPoint);
     setTimeout(function(){buttonReturn();}, 1500);
-    //buttonReturn();
 };
 // change buttons class to animate
 function buttonAnimation(targetButtonID){
@@ -110,8 +109,18 @@ function buttonAnimation(targetButtonID){
     });
     
 };
+
 function buttonReturn() {
+    // Sets the buttons to fade back in and then put them on standby
+    // for the next round
+    document.getElementById('s').className='fade-in';
+    document.getElementById('r').className='fade-in';
+    document.getElementById('p').className='fade-in';
+    setTimeout(function(){buttonStandby();}, 200);
+};
+
+function buttonStandby() {
     document.getElementById('s').className='standby';
     document.getElementById('r').className='standby';
     document.getElementById('p').className='standby';
-}
+};
