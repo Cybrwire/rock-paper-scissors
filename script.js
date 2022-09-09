@@ -11,10 +11,9 @@ function comPlay(){ // get computer move
     }
 };
 
-
-function displayResult(roundPoint, gameText){ 
-    document.getElementById('result');
-    result.innerHTML = gameText;
+function displayResult(gameText){ 
+    let resultText = document.getElementById('result-text');
+    resultText.innerHTML = gameText;
 };
 
 function addScore(roundPoint){
@@ -33,8 +32,7 @@ function addScore(roundPoint){
 
 function checkWinner(userScore, comScore){
     if (userScore == 5 || comScore == 5){
-        const winner = document.createElement('div');
-        result.innerHTML = (userScore > comScore) ? 'You win!' : 'Com Wins!';
+        resultText.innerHTML = (userScore > comScore) ? 'You win!' : 'Com Wins!';
         document.querySelectorAll('button').forEach(
             button=>button.disabled=true);
     };  
@@ -48,6 +46,7 @@ function playRound(user, choiceID){
     buttonAnimation(choiceID);
     let gameText = `You chose ${user}. Com chose ${com}. `;
     let roundPoint;
+
     switch(com){
         case ('Rock'):
             if (user == 'Rock'){
@@ -93,18 +92,33 @@ function playRound(user, choiceID){
             break;
     }
     
-    displayResult(roundPoint, gameText);
+    document.body.addEventListener('animationend', () => displayResult(gameText));
     addScore(roundPoint);
+    resetButtons();
+    
 };
 // change buttons class to animate
 function buttonAnimation(targetButtonID){
     let buttons = document.getElementsByClassName('standby');
     let buttonsArray = [...buttons];
     buttonsArray.forEach(button => {if(button.id===targetButtonID){
-        button.className = 'rise-and-fade';
+        button.classList.toggle('rise-and-fade');
         }else{
-            button.className = 'fade';
+            button.classList.toggle('fade');
         }
+        
     });
     
+};
+
+async function resetButtons(){
+    let buttons = document.getElementsByClassName('standby');
+    let buttonsArray = [...buttons];
+    buttonsArray.forEach(button => {
+        
+        button.className = 'standby';
+        
+    });
+
+    console.log('success');
 };

@@ -52,6 +52,7 @@ and the other buttons will disappear*/
 button > img{
     height: 125px;
     width: 125px;
+    padding: 10px;
 }
 #userPoint{
     height: 10vw;
@@ -81,13 +82,13 @@ button > img{
     padding-top: 1vw;
 }
 /* moved result panel to bottom for testing */
-#result-panel{
+#round-result{
     width: auto;
     height: auto;
     position: absolute;
     bottom: 0;
 }
-#result{
+#result-text{
     display: flex;
     justify-content: center;
     font-family: 'Asap', sans-serif;
